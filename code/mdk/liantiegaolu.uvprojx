@@ -1197,6 +1197,11 @@
               <FileType>1</FileType>
               <FilePath>..\fml\lnprotocol_std.c</FilePath>
             </File>
+            <File>
+              <FileName>version.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fml\version.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

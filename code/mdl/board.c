@@ -20,6 +20,8 @@
 #include "bsp_adc.h"
 #include "bsp_uart.h"
 #include "bsp_flash.h"
+#include "version.h"
+#include "clog.h"
 /**
  * @addtogroup    XXX 
  * @{  
@@ -113,6 +115,7 @@ void Board_Init_ClockRUN(void)
 
 void Board_Init_BSP(void)
 {
+	DEBUG("Version:%s\r\n",Version_Get_Str());
 	BSP_RTC_Init();   //RTC Init
 	BSP_Flash_Init(); // Flash Init
 	BSP_UART_Init( BSP_UART2 );
