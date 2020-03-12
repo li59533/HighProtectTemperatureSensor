@@ -152,66 +152,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>127</LineNumber>
+          <LineNumber>477</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>9204</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\bsp\bsp_power.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\bsp\bsp_e32.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\liantiegaolu\../bsp/bsp_e32.c\477</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>125</LineNumber>
+          <LineNumber>471</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\bsp\bsp_power.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>253</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>27264</Address>
+          <Address>9190</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\bsp\bsp_lmt01.c</Filename>
+          <Filename>..\bsp\bsp_e32.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\liantiegaolu\../bsp/bsp_lmt01.c\253</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>249</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>27240</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\bsp\bsp_lmt01.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\liantiegaolu\../bsp/bsp_lmt01.c\249</Expression>
+          <Expression>\\liantiegaolu\../bsp/bsp_e32.c\471</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

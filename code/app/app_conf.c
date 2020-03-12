@@ -189,11 +189,11 @@ void APP_Conf_Set_AlarmTime(uint8_t * payload , uint16_t len)
 	rtc_datetime_t  datetime ;
 	
 	datetime.year = *(uint16_t *)&payload[0];
-	datetime.month = payload[6];
-	datetime.day = payload[7];
-	datetime.hour = payload[8];
-	datetime.minute = payload[9];
-	datetime.second = payload[10];
+	datetime.month = payload[2];
+	datetime.day = payload[3];
+	datetime.hour = payload[4];
+	datetime.minute = payload[5];
+	datetime.second = payload[6];
 	
 	g_SystemParam_Config.firsttimestamp = BSP_RTC_ConvertDatetimeToSeconds(&datetime);
 	

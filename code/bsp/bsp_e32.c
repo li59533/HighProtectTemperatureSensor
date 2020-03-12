@@ -130,8 +130,6 @@ static uint8_t BSP_E32_GetConfCMD[3]		 = {0xC1 ,0xC1 , 0xC1} ;
 static uint8_t rev_flag = 0;
 static uint8_t BSP_E32_CurrentStatus = 0;
 
-
-
 static uint8_t bsp_e32_senddatabuf[BSP_E32_SENDBUF_LEN] = { 0 }; 
 
 static BSP_E32_CmdQueue_t BSP_E32_CmdQueue = 
@@ -177,8 +175,8 @@ static void BSP_E32_ModlueRevAnalysis(uint8_t * buf, uint8_t len );
  */
 void BSP_E32_Init(void)
 {
-	BSP_E32_Power_OFF();
 	bsp_e32_halinit();
+	BSP_E32_Power_OFF();
 	BSP_Systick_Delayms(5);
 	BSP_E32_Power_ON();
 	BSP_Systick_Delayms(1);
@@ -308,15 +306,19 @@ void BSP_E32_WriteBytes(uint8_t *buf , uint16_t len)
 
 void BSP_E32_SendData(uint16_t destaddr , uint8_t channel, uint8_t *buf , uint16_t len)
 {	
-	bsp_e32_senddata_t * sendbuf = (bsp_e32_senddata_t *) &bsp_e32_senddatabuf;
-	//sendbuf->destaddr = destaddr ;
-	//sendbuf->destaddr &= 0x0000; 
-	sendbuf->destaddr = (*(uint8_t *)&destaddr << 8)| (*((uint8_t *)&destaddr + 1) );
 	
-	sendbuf->channel = channel;
-	memcpy( &sendbuf->payload , buf , len);
-	
-	BSP_E32_AddSendBuf( (uint8_t *)sendbuf , len  + 3);
+	if(BSP_E32_GetMode() == E32_MODE_NORMAL)
+	{
+		bsp_e32_senddata_t * sendbuf = (bsp_e32_senddata_t *) &bsp_e32_senddatabuf;
+		sendbuf->destaddr = (*(uint8_t *)&destaddr << 8)| (*((uint8_t *)&destaddr + 1) );
+		sendbuf->channel = channel;
+		memcpy( &sendbuf->payload , buf , len);
+		BSP_E32_AddSendBuf( (uint8_t *)sendbuf , len  + 3);		
+	}
+	else
+	{
+		BSP_E32_AddCmd(E32_CMD_GETCONF_Req, 0 );
+	}
 }
 
 void BSP_E32_AddSendBuf(uint8_t *buf , uint16_t len)
@@ -607,41 +609,20 @@ static void BSP_E32_ModlueRevAnalysis(uint8_t * buf, uint8_t len )
 		module_power != g_SystemParam_Config.E32_conf.module_power
 		)
 	{
-		DEBUG("E32 has Some different\r\n");
+		DEBUG("E32 Conf has Some different\r\n");
 		
 		BSP_E32_AddCmd( E32_CMD_SETCONF_Req , 0);
 	}
 	else
 	{
+		DEBUG("E32 Conf is same\r\n");
 		BSP_E32_AddCmd( E32_CMD_CONF_OK , 0);
 	}
 	
-	
-//	//BSP_Systick_Delayms(100);
+
 	DEBUG("LocalAddr:%04X\r\n" , module_localaddr);
-//	DEBUG("module_TTLcheck:%X\r\n" , module_TTLcheck);
-//	DEBUG("module_TTLbaudrate:%X\r\n" , module_TTLbaudrate);
-//	DEBUG("module_Airbaudrate:%X\r\n" , module_Airbaudrate);
-//	DEBUG("module_chan:%X\r\n" , module_chan);
-//	DEBUG("module_transmission_mode:%X\r\n" , module_transmission_mode);
-//	DEBUG("module_IO_workstyle:%X\r\n" , module_IO_workstyle);
-//	DEBUG("module_wakeup_time:%X\r\n" , module_wakeup_time);	
-//	DEBUG("module_FEC:%X\r\n" , module_FEC);
-//	DEBUG("module_power:%X\r\n" , module_power);		
-//	
-//	DEBUG("-------------------------------\r\n");
-//	//BSP_Systick_Delayms(100);
+
 	DEBUG("g_LocalAddr:%04X\r\n" , g_SystemParam_Config.E32_conf.module_source_addr);
-//	DEBUG("g_module_TTLcheck:%X\r\n" , g_SystemParam_Config.module_datacheck);
-//	DEBUG("g_module_TTLbaudrate:%X\r\n" , g_SystemParam_Config.module_baudrate);
-//	DEBUG("g_module_Airbaudrate:%X\r\n" , g_SystemParam_Config.module_airspeed );
-//	DEBUG("g_module_chan:%X\r\n" , g_SystemParam_Config.module_channel);
-//	DEBUG("g_module_transmission_mode:%X\r\n" , g_SystemParam_Config.module_transmission_mode );
-//	DEBUG("g_module_IO_workstyle:%X\r\n" , g_SystemParam_Config.module_IO_workstyle );
-//	DEBUG("g_module_wakeup_time:%X\r\n" , g_SystemParam_Config.module_wakeup_time);	
-//	DEBUG("g_module_FEC:%X\r\n" , g_SystemParam_Config.module_FEC);
-//	DEBUG("g_module_power:%X\r\n" , g_SystemParam_Config.module_power);
-		
 }
 
 void BSP_E32_ConfChange(void)
@@ -665,20 +646,20 @@ void BSP_E32_Close(void)
 {
 	BSP_E32_Power_OFF();
 	BSP_Uart0_Close();
-	BSP_E32_CmdQueue.in = 0;
-	BSP_E32_CmdQueue.count = 0;
-	BSP_E32_CmdQueue.out = 0;
+//	BSP_E32_CmdQueue.in = 0;
+//	BSP_E32_CmdQueue.count = 0;
+//	BSP_E32_CmdQueue.out = 0;
 	
-	NetTask_Clear_Event(NET_TASK_MODULE_INIT_EVENT);
-	NetTask_Clear_Event(NET_TASK_CORE_LOOP_EVENT);
-	NetTask_Clear_Event(NET_TASK_REV_EVENT);
+//	NetTask_Clear_Event(NET_TASK_MODULE_INIT_EVENT);
+//	NetTask_Clear_Event(NET_TASK_CORE_LOOP_EVENT);
+//	NetTask_Clear_Event(NET_TASK_REV_EVENT);
 }
 
 void BSP_E32_Open(void)
 {
 	BSP_Uart0_Open();
 	BSP_E32_Power_ON();
-	NetTask_Send_Event(NET_TASK_CORE_LOOP_EVENT);
+//	NetTask_Send_Event(NET_TASK_CORE_LOOP_EVENT);
 }
 
 
