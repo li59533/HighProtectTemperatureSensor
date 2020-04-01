@@ -89,14 +89,11 @@ typedef enum
 	
 }LN_Protocol_ReportData_Tag_e;
 
-
-
 typedef enum
 {
 	CONF_SUCCESS = 1,
 	CONF_ERROR	 = 2,
 }LN_Conf_Status_e;
-
 
 typedef enum
 {
@@ -121,13 +118,9 @@ typedef enum
 	CMD_ReportDataACK = 0x50,
 	CMD_Conf_Set_SNcode = 0x88,
 	// ------
-	
 
-	
 	// ------
 }LN_Protocol_Cmd_e;
-
-
 
 #pragma pack(1)
 typedef struct
@@ -143,7 +136,6 @@ typedef struct
 	}Value;
 }LN_Tlv_t;
 
-
 typedef struct
 {
 	uint8_t head;
@@ -154,9 +146,6 @@ typedef struct
 	uint8_t foot;
 
 }ln_protocolintance_t;
-
-
-
 
 #pragma pack()
 
@@ -177,18 +166,6 @@ typedef struct
  * @defgroup      lnprotocol_Exported_Functions 
  * @{  
  */
-uint8_t * LNprotocol_AddHead(uint8_t * targetspace_ptr); // return the value ptr
-
-uint8_t * LNprotocol_AddValue(uint8_t * targetspace_ptr , uint8_t *buf,uint8_t len);
-
-uint8_t * LNprotocol_AddFoot(uint8_t * targetspace_ptr);
-
-void LNprotocol_Addlen(uint8_t *buf, uint16_t len);
-
-uint8_t LNprotocol_AddChecksum(uint8_t * buf,uint16_t len);
-
-uint8_t LN_AddTlv(uint8_t * disaddr,LN_Tlv_t * tlv_value);
-
 
 uint8_t * LNprotocol_AddPayload(uint8_t * buf_ptr , uint8_t * payload , uint16_t len);
 uint8_t LNprotocol_GetChecksum(uint8_t *buf , uint16_t len);

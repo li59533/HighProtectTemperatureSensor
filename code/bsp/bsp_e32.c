@@ -543,8 +543,7 @@ void BSP_E32_Rev(void)
 		DEBUG(" %X ",bsp_e32_revbuf.buf[i]);
 	}
 	DEBUG("\r\n");
-	
-	
+
 	uint8_t e32_revbuf[100];
 	uint8_t e32_revlen = 0;
 	e32_revlen = bsp_e32_revbuf.len;
@@ -561,8 +560,6 @@ void BSP_E32_Rev(void)
 	}
 	else if(BSP_E32_GetMode() == E32_MODE_NORMAL)
 	{
-		
-		
 		APP_RevMess_Analysis(e32_revbuf , e32_revlen );
 		BSP_LED_Blink( BSP_LED_TEST , 3 , 10, 150);
 	}

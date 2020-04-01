@@ -150,11 +150,6 @@ static int8_t bsp_e32_rev(uint8_t * buf , uint16_t len)
 			memcpy( &temp_buf.buf[0] , &temp_buf.buf[i], temp_buf.len); // offset
 			i = 0;
 			
-//			if(temp_buf.len < 4)
-//			{
-//				break;
-//			}
-//			else
 			{
 				if((temp_buf.buf[ 2] + temp_buf.buf[3] * 256) == (temp_buf.len - 6) ) // check inf len 
 				{

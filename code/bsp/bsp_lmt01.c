@@ -128,28 +128,27 @@ pulse -> PD7
 */ 
  
  
-void BSP_LMT01_Init(void)
-{
-	// ------GPIO --------
-	gpio_pin_config_t gpio_pin_config ;
-	CLOCK_EnableClock(kCLOCK_PortD);
-	CLOCK_EnableClock(kCLOCK_PortE);
-	
-	PORT_SetPinMux(PORTD, 7,kPORT_MuxAsGpio);
-	gpio_pin_config.outputLogic = 0;
-	gpio_pin_config.pinDirection = kGPIO_DigitalOutput;
-	GPIO_PinInit(GPIOD, 7, &gpio_pin_config);
+//void BSP_LMT01_Init(void)
+//{
+//	// ------GPIO --------
+//	gpio_pin_config_t gpio_pin_config ;
+//	CLOCK_EnableClock(kCLOCK_PortD);
+//	CLOCK_EnableClock(kCLOCK_PortE);
+//	
+//	PORT_SetPinMux(PORTD, 7,kPORT_MuxAsGpio);
+//	gpio_pin_config.outputLogic = 0;
+//	gpio_pin_config.pinDirection = kGPIO_DigitalOutput;
+//	GPIO_PinInit(GPIOD, 7, &gpio_pin_config);
 
-	PORT_SetPinMux(PORTE, 1,kPORT_MuxAsGpio);
-	gpio_pin_config.outputLogic = 0;
-	gpio_pin_config.pinDirection = kGPIO_DigitalOutput;
-	GPIO_PinInit(GPIOE, 1, &gpio_pin_config);	
-	
-	PORT_SetPinInterruptConfig(PORTD, 7, kPORT_InterruptRisingEdge)	;
-	
-	EnableIRQ(PORTC_PORTD_IRQn);	
-
-}
+//	PORT_SetPinMux(PORTE, 1,kPORT_MuxAsGpio);
+//	gpio_pin_config.outputLogic = 0;
+//	gpio_pin_config.pinDirection = kGPIO_DigitalOutput;
+//	GPIO_PinInit(GPIOE, 1, &gpio_pin_config);	
+//	
+//	PORT_SetPinInterruptConfig(PORTD, 7, kPORT_InterruptRisingEdge)	;
+//	
+//	EnableIRQ(PORTC_PORTD_IRQn);	
+//}
 
 void BSP_LMT01_Power_ON(void)
 {

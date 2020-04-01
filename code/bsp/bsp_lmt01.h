@@ -70,15 +70,15 @@ typedef enum
  * @defgroup      bsp_lmt01_Exported_Functions 
  * @{  
  */
-
- 
-//void BSP_LMT01_Init(void);
 void BSP_LMT01_Power_ON(void);
 void BSP_LMT01_Power_OFF(void);
 void BSP_LMT01_CoreLoop(void);  //call this func in 20ms
 uint8_t BSP_LMT01_GetDataStatus(void);
 float BSP_LMT01_GetValue(void);
+
+// ----------TestFunc ----------
 void BSP_LMT01_TestFunc(void);
+// -----------------------------
 
 /**
  * @}
