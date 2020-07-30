@@ -53,8 +53,8 @@
 #define E32_M1_DOWN  	GPIO_WritePinOutput(GPIOD, 6, 0)
 #define E32_AUX_STATUS	GPIO_ReadPinInput(GPIOA, 4)
 
-#define E32_POWER_ON	GPIO_WritePinOutput(GPIOE, 19, 0)
-#define E32_POWER_OFF	GPIO_WritePinOutput(GPIOE, 19, 1)
+#define E32_POWER_ON	GPIO_WritePinOutput(GPIOE, 19, 1)
+#define E32_POWER_OFF	GPIO_WritePinOutput(GPIOE, 19, 0)
 
 
 #define BSP_E32_SENDBUF_LEN 100 
